@@ -7,9 +7,15 @@ public class Having : MonoBehaviour
 
     public Items QP;
 
-    public void Awake()
+    static Having instance;
+    void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     public void Start()
@@ -46,13 +52,19 @@ public class Having : MonoBehaviour
         QP_Changer(item.price_S * n);
     }
 
+    public void Reset_I()
+    {
+        int n = items.Count;
+        for (int i = 1; i < n; i++) items[i].count = 1;
+        items.Clear();
+        items.Add(QP);
+        QP.count = 10000;
+    }
+
     private void OnDestroy()
     {
         QP.count = 10000;
         int n = items.Count;
-        for (int i=1; i<n; i++)
-        {
-            items[i].count = 1;
-        }
+        for (int i=1; i<n; i++) items[i].count = 1;
     }
 }

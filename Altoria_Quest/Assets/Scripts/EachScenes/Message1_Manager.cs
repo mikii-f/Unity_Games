@@ -42,7 +42,7 @@ public class Message1_Manager : MonoBehaviour
         having = i_Manager.GetComponent<Having>();
         GameObject s_Manager = GameObject.Find("Status_Manager");
         status = s_Manager.GetComponent<Status>();
-        m_Manager.Start_Scene();
+        StartCoroutine(m_Manager.Setting());
         StartCoroutine(Scene0());
     }
 

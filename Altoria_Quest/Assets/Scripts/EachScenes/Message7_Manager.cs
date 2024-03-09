@@ -26,9 +26,13 @@ public class Message7_Manager : MonoBehaviour
     const int TIME = 5;
     public Image face;
     public Sprite flame;
-    //public Sprite O1;
-    //public Sprite O2;
-    //public Sprite O3;
+    public Image character;
+    public Sprite tp;
+    public Sprite smoke;
+    public Sprite Oberon;
+    public Sprite O1;
+    public Sprite O2;
+    public Sprite O3;
     public TMP_Text characterName;
 
     Having having;
@@ -37,7 +41,7 @@ public class Message7_Manager : MonoBehaviour
     public Items item_mant;
 
     readonly string[] message_s7U = {"「 妖精の鱗粉 」を見つけた(防御+30)", "おっと、見つかってしまったか。やっぱり妖精眼とは厄介なものだ。\nあまり関わる気はなかったんだけどなあ。", "全く、図々しいなあアルトリアは。じゃあ一つだけ。\n「モルガンは拳を握りしめがち」、分かったかい？", "それほど緊急事態でもないんだ、全部教えてしまっても面白くないだろう？", "自分がモルガンに勝てるか心配かい？\nなら、これもおまけしてあげよう。", "「 妖精王のマント(スペア) 」を手に入れた(HP+200 やる気+10 防御+50)"};
-    readonly string[] message_s7D = {"ここには誰もいないみたい。\nん？あれは……。", "もう、こんなところまで来ておいて何言ってるの……。\n何か知ってるんでしょ？教えてよ。", "え、何そのヒント……。", "オベロンが言うならそうなんだろうけど……一応我らがマスターの危機なんだよ？", "べ、別に助けてもらわなくても勝てるけど、せっかくだしもらっとく。\n…………あと一応、ありがと！"};
+    readonly string[] message_s7D = {"ここには誰もいないみたい。\nん？あれは……。", "もう、こんなところまで来ておいて何言ってるの……。\n何か知ってるんでしょ？教えてよ。", "え、何そのヒント……。", "オベロンが言うならそうなんだろうけど……一応我らがマスターの危機なんだよ？", "べ、別に助けてもらわなくても勝てるけど……せっかくだしもらっとく。\n…………あと一応、ありがとね！"};
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +62,8 @@ public class Message7_Manager : MonoBehaviour
         GameObject s_Manager = GameObject.Find("Status_Manager");
         status = s_Manager.GetComponent<Status>();
         blanca_position = blanca.GetComponent<RectTransform>();
-        m_Manager.Start_Scene();
+        character.sprite = tp;
+        StartCoroutine(m_Manager.Setting());
     }
 
     // Update is called once per frame
@@ -112,8 +117,11 @@ public class Message7_Manager : MonoBehaviour
         success = true;
         oberon_Chance = false;
         ms_Manager.eye_possible = false;
-        //oberon.SetActive(true);
-        //face.sprite = O1;
+        bgmover.symbol.sprite = tp;
+        character.sprite = smoke;
+        yield return new WaitForSeconds(0.6f);
+        character.sprite = Oberon;
+        face.sprite = O1;
         characterName.text = "オベロン";
         yield return new WaitForSeconds(3);
         window_U.SetActive(true);
@@ -128,6 +136,7 @@ public class Message7_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(false);
         black_D.SetActive(true);
+        face.sprite = O2;
         message_U.text = message_s7U[2];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -138,6 +147,7 @@ public class Message7_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(false);
         black_D.SetActive(true);
+        face.sprite = O3;
         message_U.text = message_s7U[3];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -148,6 +158,7 @@ public class Message7_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(false);
         black_D.SetActive(true);
+        face.sprite = O1;
         message_U.text = message_s7U[4];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -169,6 +180,9 @@ public class Message7_Manager : MonoBehaviour
         gu_Manager.SandIText_Changer();
         window_U.SetActive(false);
         window_D.SetActive(false);
+        character.sprite = smoke;
+        yield return new WaitForSeconds(0.6f);
+        character.sprite = tp;
         m_Manager.is_Window = false;
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MainScene_Manager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class MainScene_Manager : MonoBehaviour
     public GameObject go_Next;
     public GameObject black;
     public GameObject reverse;
+    public GameObject window_G;
+    public TMP_Text message_G;
+    public TMP_Text text_G;
     [NonSerialized]
     public bool eye_used = false;
     [NonSerialized]
@@ -21,6 +26,7 @@ public class MainScene_Manager : MonoBehaviour
     Guide_Manager gu_Manager;
     Manager manager;
     Status status;
+    Having having;
     const float fade_time = 0.5f;
     const int loop = 20;
     float wait_time = fade_time / loop;
@@ -30,6 +36,7 @@ public class MainScene_Manager : MonoBehaviour
     {
         go_Next.SetActive(false);
         reverse.SetActive(false);
+        window_G.SetActive(false);
         bgmover = background.GetComponent<BgMover>();
         ponti.GetComponent<RectTransform>().anchoredPosition = new Vector3(-272 + Manager.current_Scene * 61f, 210f, 0f);
         is_Reached = false;
@@ -41,6 +48,8 @@ public class MainScene_Manager : MonoBehaviour
         manager = ga_Manager.GetComponent<Manager>();
         GameObject s_Manager = GameObject.Find("Status_Manager");
         status = s_Manager.GetComponent<Status>();
+        GameObject i_Manager = GameObject.Find("Item_Manager");
+        having = i_Manager.GetComponent<Having>();
         fade = black.GetComponent<Image>();
         StartCoroutine(FadeIn());
     }
@@ -68,7 +77,7 @@ public class MainScene_Manager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            manager.Debug();
+            StartCoroutine(manager.Skip());
         }
     }
 
@@ -112,5 +121,20 @@ public class MainScene_Manager : MonoBehaviour
         reverse.SetActive(true);
         yield return new WaitForSeconds(2);
         reverse.SetActive(false);
+    }
+
+    public IEnumerator GameOver()
+    {
+        window_G.SetActive(true);
+        yield return new WaitForSeconds(2);
+        message_G.text = "ñ⁄ÇÃëOÇ™ê^Ç¡à√Ç…Ç»Ç¡ÇΩÅI";
+        yield return new WaitForSeconds(2);
+        yield return StartCoroutine(FadeOut());
+        yield return new WaitForSeconds(1);
+        text_G.text = "Game Over...";
+        yield return new WaitForSeconds(2);
+        status.Reset_S();
+        having.Reset_I();
+        SceneManager.LoadScene("Title");
     }
 }

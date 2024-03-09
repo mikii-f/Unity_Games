@@ -28,6 +28,15 @@ public class Guide_Manager : MonoBehaviour
             Status status = s_Manager.GetComponent<Status>();
             status.hp += 50;
         }
+        if (Having.items.FindIndex(x => x.Name == "‚¨‚É‚¬‚è") >= 0 && Status.mHP - Status.HP >= 50)
+        {
+            int n = Having.items.FindIndex(x => x.Name == "‚¨‚É‚¬‚è");
+            int m = Mathf.FloorToInt((Status.mHP - Status.HP) / 50);
+            GameObject s_Manager = GameObject.Find("Status_Manager");
+            Status status = s_Manager.GetComponent<Status>();
+            status.hp += 50 * Mathf.Min(Having.items[n].count, m);
+            Having.items[n].count -= Mathf.Min(Having.items[n].count, m);
+        }
     }
 
     // Update is called once per frame

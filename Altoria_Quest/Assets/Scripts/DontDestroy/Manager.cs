@@ -7,13 +7,20 @@ using System.Collections;
 
 public class Manager : MonoBehaviour
 {
-    const int SCENE_NUMBER = 9;
+    const int SCENE_NUMBER = 10;
     int[] scene_Order = new int[SCENE_NUMBER];
     [NonSerialized]
     public static int current_Scene;
-    private void Awake()
+
+    static Manager instance;
+    void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     // Start is called before the first frame update
@@ -33,6 +40,11 @@ public class Manager : MonoBehaviour
 
     public void Order_Setter()
     {
+        if (current_Scene != 0)
+        {
+            current_Scene = 0;
+            for (int j=2; j < SCENE_NUMBER-1; j++) scene_Order[j] = 0;
+        }
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
         int i = 2;
         while (i < SCENE_NUMBER-1)
@@ -73,6 +85,9 @@ public class Manager : MonoBehaviour
             case 7:
                 SceneManager.LoadScene("MainScene7");
                 break;
+            case 8:
+                SceneManager.LoadScene("MainScene8");
+                break;
             case 100:
                 SceneManager.LoadScene("MainScene100");
                 break;
@@ -106,19 +121,16 @@ public class Manager : MonoBehaviour
             case 7:
                 text += "イベント";
                 break;
+            case 8:
+                text += "休憩";
+                break;
             case 100:
                 text += "ボーナス";
                 break;
         }
         area_Text.text = text;
     }
-
-    public void Debug()
-    {
-        StartCoroutine(Skip());
-    }
-
-    IEnumerator Skip()
+    public IEnumerator Skip()
     {
         yield return new WaitForSeconds(1);
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.S));
@@ -128,5 +140,6 @@ public class Manager : MonoBehaviour
         else if (Input.GetKey(KeyCode.Alpha5)) SceneManager.LoadScene("MainScene5");
         else if (Input.GetKey(KeyCode.Alpha6)) SceneManager.LoadScene("MainScene6");
         else if (Input.GetKey(KeyCode.Alpha7)) SceneManager.LoadScene("MainScene7");
+        else if (Input.GetKey(KeyCode.Alpha8)) SceneManager.LoadScene("MainScene8");
     }
 }

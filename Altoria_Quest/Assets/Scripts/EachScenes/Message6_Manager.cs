@@ -53,7 +53,7 @@ public class Message6_Manager : MonoBehaviour
         GameObject s_Manager = GameObject.Find("Status_Manager");
         status = s_Manager.GetComponent<Status>();
         window_B.SetActive(false);
-        m_Manager.Start_Scene();
+        StartCoroutine(m_Manager.Setting());
     }
 
     // Update is called once per frame

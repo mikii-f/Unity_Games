@@ -57,7 +57,7 @@ public class Message2_Manager : MonoBehaviour
         tri_H.SetActive(false);
         tri_B.SetActive(false);
         window_R.SetActive(false);
-        m_Manager.Start_Scene();
+        StartCoroutine(m_Manager.Setting());
     }
 
     // Update is called once per frame

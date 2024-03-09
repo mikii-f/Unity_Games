@@ -12,6 +12,7 @@ public class Message3_Manager : MonoBehaviour
     TMP_Text message_D;
     Message_Manager m_Manager;
     Guide_Manager gu_Manager;
+    MainScene_Manager ms_Manager;
     ItemView IV;
     public GameObject window_U;
     public GameObject window_D;
@@ -51,7 +52,7 @@ public class Message3_Manager : MonoBehaviour
     List<Items> temp_items = new();
     int bs_Count = 1;
 
-    readonly string[] message_s3U = {"お、誰かと思えば嬢ちゃんじゃねえか。", "今日は気分を変えて外で刀の手入れをな。\n嬢ちゃんの方こそ、何か用でもあんのか？", "おまえさんは聖剣でも何でも作れんだろ……。\nまあちょうど良いのがあるにはある。買ってくかい？", "生憎こちとら商人なんでね。良いもん持ってるなら買い取りもするし、今すぐ金(QP)が要るってんなら質に入れるのもいいが、どうすんだ？", "どれが欲しいんだ？", "どれを引き取りゃいい？" ,"まいどあり！", "まだ見ていくか？", "これはおまけだ、食っていきな。", "「 村正の握り飯 」を食べた(体力・最大体力+100)"};
+    readonly string[] message_s3U = {"お、誰かと思えば嬢ちゃんじゃねえか。", "今日は気分を変えて外で刀の手入れをな。\n嬢ちゃんの方こそ、何か用でもあんのか？", "おまえさんは聖剣でも何でも作れんだろ……。\nまあちょうど良いのがあるにはある。買ってくかい？", "生憎こちとら商人なんでね。良いもん持ってるなら買い取りもするし、今すぐ金(QP)が要るってんなら質に入れるのもいいが、どうすんだ？", "どれが欲しいんだ？", "どれを引き取りゃいい？" ,"まいどあり！", "まだ見ていくか？", "じゃあ、またな！"};
     readonly string[] message_s3D = {"あ、村正！何やってるの？", "今はモルガンを探してて……。あ、そうだ！村正、何か良い刀ない？", "え、金(QP)とるの！？こっちは万年金欠なんだぞ村正ァ！", "うーん、それじゃあ……",  "(矢印キーとEnterで選択)", "(マウスで選択し、クリックまたはEnterで決定)\n(Bを押すと一つ前の選択に戻る)", "ここまでにしておくよ。" };
 
     // Start is called before the first frame update
@@ -66,6 +67,8 @@ public class Message3_Manager : MonoBehaviour
         m_Manager = message_Manager.GetComponent<Message_Manager>();
         GameObject guide_Manager = GameObject.Find("Guide_Manager");
         gu_Manager = guide_Manager.GetComponent<Guide_Manager>();
+        GameObject mainscene_Manager = GameObject.Find("MainScene_Manager");
+        ms_Manager = mainscene_Manager.GetComponent<MainScene_Manager>();
         GameObject i_Manager = GameObject.Find("Item_Manager");
         having = i_Manager.GetComponent<Having>();
         GameObject s_Manager = GameObject.Find("Status_Manager");
@@ -86,7 +89,7 @@ public class Message3_Manager : MonoBehaviour
         tri_position = tri.GetComponent<RectTransform>();
         tri.SetActive(false);
         itemview.SetActive(false);
-        m_Manager.Start_Scene();
+        StartCoroutine(m_Manager.Setting());
     }
 
     // Update is called once per frame
@@ -441,6 +444,8 @@ public class Message3_Manager : MonoBehaviour
             case -45:
                 for (int i = 0; i < bs_Count; i++) having.Item_Adder(item_yoto);
                 status.hp -= 100 * bs_Count;
+                status.Status_Changer();
+                if (Status.HP <= 0) StartCoroutine(ms_Manager.GameOver());
                 having.QP_Changer(-10000 * bs_Count);
                 break;
         }
@@ -498,13 +503,6 @@ public class Message3_Manager : MonoBehaviour
         message_U.text = message_s3U[8];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        face.sprite = flame;
-        characterName.text = "";
-        message_U.text = message_s3U[9];
-        yield return null;
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        status.hp += 100;
-        status.mhp += 100;
         black_D.SetActive(false);
         status.Status_Changer();
         gu_Manager.SandIText_Changer();

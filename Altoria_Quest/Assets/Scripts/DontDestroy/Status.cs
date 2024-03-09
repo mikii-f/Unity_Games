@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Status : MonoBehaviour
@@ -19,9 +20,16 @@ public class Status : MonoBehaviour
     public static int Attack;
     [NonSerialized]
     public static int Defense;
-    public void Awake()
+
+    static Status instance;
+    void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     // Start is called before the first frame update
@@ -88,5 +96,14 @@ public class Status : MonoBehaviour
             HP = mHP;
         }
         if (Motivation < 0) Motivation = 0;
+    }
+
+    public void Reset_S()
+    {
+        hp = 1000;
+        mhp = 1000;
+        motivation = 20;
+        attack = 200;
+        defense = 50;
     }
 }

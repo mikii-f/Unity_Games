@@ -42,13 +42,7 @@ public class Message_Manager : MonoBehaviour
         is_Window = true;
         is_Windowed = true;
     }
-
-    public void Start_Scene()
-    {
-        StartCoroutine(Setting());
-    }
-
-    IEnumerator Setting()
+    public IEnumerator Setting()
     {
         yield return null;
         manager.Area_Text(go_Area);

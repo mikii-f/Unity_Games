@@ -22,7 +22,7 @@ public class Message4_Manager : MonoBehaviour
     public GameObject tri_Q;
     public Sprite Wy1;
     public Sprite Wy2;
-    public Sprite ts;
+    public Sprite tp;
     public Image icon;
     public Sprite icon_A;
     public Sprite icon_R;
@@ -60,7 +60,7 @@ public class Message4_Manager : MonoBehaviour
         window_O.SetActive(false);
         tri_B.SetActive(false);
         tri_Q.SetActive(false);
-        m_Manager.Start_Scene();
+        StartCoroutine(m_Manager.Setting());
     }
 
     // Update is called once per frame
@@ -143,8 +143,8 @@ public class Message4_Manager : MonoBehaviour
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return StartCoroutine(ms_Manager.FadeOut());
-        bgmover.symbol.sprite = ts;
-        icon.sprite = ts;
+        bgmover.symbol.sprite = tp;
+        icon.sprite = tp;
         message_U.text = "";
         message_D.text = "";
         int item = UnityEngine.Random.Range(0, 2);
@@ -155,7 +155,7 @@ public class Message4_Manager : MonoBehaviour
         else text = "Šl“¾‘fŞF" + "—³‚Ì‹t—Ø " + n.ToString() + " ŒÂ";
         if (e == 1)
         {
-            damage = 300 - Status.Defense;
+            damage = 600 - Status.Defense;
             text += "\n‘Ì—Í‚ª " + damage.ToString() + " Œ¸‚Á‚½";
         }
         yield return new WaitForSeconds(1);
@@ -174,6 +174,7 @@ public class Message4_Manager : MonoBehaviour
         }
         if (e == 1) status.hp -= damage;
         status.Status_Changer();
+        if (Status.HP <= 0) StartCoroutine(ms_Manager.GameOver());
         gu_Manager.SandIText_Changer();
         window_U.SetActive(false);
         window_D.SetActive(false);
