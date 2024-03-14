@@ -19,9 +19,8 @@ public class Message8_Manager : MonoBehaviour
     public GameObject black_D;
     public Image face;
     public Sprite flame;
-    //public Sprite E1;
-    //public Sprite E2;
-    //public Sprite E3;
+    public Sprite E1;
+    public Sprite E2;
     public TMP_Text characterName;
     public GameObject window_P;
     public GameObject window_I1;
@@ -261,7 +260,7 @@ public class Message8_Manager : MonoBehaviour
     {
         black_D.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        //face.sprite = E1;
+        face.sprite = E1;
         characterName.text = "ƒGƒ~ƒ„";
         message_U.text = message_s8U[0];
         yield return null;
@@ -322,6 +321,7 @@ public class Message8_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(false);
         black_D.SetActive(true);
+        face.sprite = E2;
         message_U.text = message_s8U[1];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

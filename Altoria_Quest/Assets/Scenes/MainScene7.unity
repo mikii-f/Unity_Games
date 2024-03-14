@@ -1761,7 +1761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2170,7 +2170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3201fdc9430049f4c81fdc3ccf053a38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff6885ae1f893f446982ae161dcd233b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3237,6 +3237,7 @@ MonoBehaviour:
   face: {fileID: 444501467}
   flame: {fileID: 21300000, guid: 91b94958bad68c6428d52ebf229d892b, type: 3}
   character: {fileID: 1005180511}
+  t2: {fileID: 21300000, guid: c5544e5deb48e7345b45df3734d3109b, type: 3}
   tp: {fileID: 21300000, guid: 048a5db1f23a89a418c236f4bc06379c, type: 3}
   smoke: {fileID: 21300000, guid: 46be3a78ff225de44b6fb736867492a6, type: 3}
   Oberon: {fileID: 21300000, guid: cd1cfd46d89200a44b22b84a978f0e4d, type: 3}

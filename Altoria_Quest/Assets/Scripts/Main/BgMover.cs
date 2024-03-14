@@ -41,7 +41,9 @@ public class BgMover : MonoBehaviour
                 }
                 offset = pushTime * offsetSpeed;
                 material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-                symbol_p.anchoredPosition = new Vector2(1800 - offset * 1600, -30);
+                Vector2 pos = symbol_p.anchoredPosition;
+                pos.x = 1800 - offset * 1600;
+                symbol_p.anchoredPosition = pos;
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -51,7 +53,9 @@ public class BgMover : MonoBehaviour
                 }
                 offset = pushTime * offsetSpeed;
                 material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-                symbol_p.anchoredPosition = new Vector2(1800 - offset * 1600, -30);
+                Vector2 pos = symbol_p.anchoredPosition;
+                pos.x = 1800 - offset * 1600;
+                symbol_p.anchoredPosition = pos;
             }
         }
     }

@@ -89,7 +89,7 @@ public class Manager : MonoBehaviour
                 SceneManager.LoadScene("MainScene8");
                 break;
             case 100:
-                SceneManager.LoadScene("MainScene100");
+                SceneManager.LoadScene("GrandBattle");
                 break;
         }
     }
@@ -125,7 +125,7 @@ public class Manager : MonoBehaviour
                 text += "休憩";
                 break;
             case 100:
-                text += "ボーナス";
+                text = "最終エリア\nボス";
                 break;
         }
         area_Text.text = text;
@@ -141,5 +141,6 @@ public class Manager : MonoBehaviour
         else if (Input.GetKey(KeyCode.Alpha6)) SceneManager.LoadScene("MainScene6");
         else if (Input.GetKey(KeyCode.Alpha7)) SceneManager.LoadScene("MainScene7");
         else if (Input.GetKey(KeyCode.Alpha8)) SceneManager.LoadScene("MainScene8");
+        else if (Input.GetKey(KeyCode.Alpha0)) SceneManager.LoadScene("GrandBattle");
     }
 }

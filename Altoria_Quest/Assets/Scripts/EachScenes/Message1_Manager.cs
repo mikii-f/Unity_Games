@@ -15,6 +15,7 @@ public class Message1_Manager : MonoBehaviour
     public GameObject window_D;
     public GameObject black_U;
     public GameObject black_D;
+    public Sprite t2;
 
     Having having;
     Status status;
@@ -82,6 +83,7 @@ public class Message1_Manager : MonoBehaviour
     {
         black_D.SetActive(true);
         yield return new WaitForSeconds(0.5f);
+        bgmover.symbol.sprite = t2;
         message_U.text = message_s1U[0];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

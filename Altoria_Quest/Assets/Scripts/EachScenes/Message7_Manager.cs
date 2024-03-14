@@ -27,6 +27,7 @@ public class Message7_Manager : MonoBehaviour
     public Image face;
     public Sprite flame;
     public Image character;
+    public Sprite t2;
     public Sprite tp;
     public Sprite smoke;
     public Sprite Oberon;
@@ -87,6 +88,7 @@ public class Message7_Manager : MonoBehaviour
     {
         black_D.SetActive(true);
         yield return new WaitForSeconds(0.5f);
+        bgmover.symbol.sprite = t2;
         message_U.text = message_s7U[0];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));

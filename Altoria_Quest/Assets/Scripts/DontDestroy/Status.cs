@@ -96,6 +96,7 @@ public class Status : MonoBehaviour
             HP = mHP;
         }
         if (Motivation < 0) Motivation = 0;
+        if (HP < 0) HP = 0;
     }
 
     public void Reset_S()
