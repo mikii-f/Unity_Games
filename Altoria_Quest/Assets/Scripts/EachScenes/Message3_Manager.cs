@@ -23,6 +23,10 @@ public class Message3_Manager : MonoBehaviour
     public Sprite MS1;
     public Sprite MS2;
     public Sprite MS3;
+    public Image face_P;
+    public Sprite AC1;
+    public Sprite AC2;
+    public Sprite AC3;
     public TMP_Text characterName;
     public GameObject window_O;
     public GameObject window_P;
@@ -52,7 +56,7 @@ public class Message3_Manager : MonoBehaviour
     List<Items> temp_items = new();
     int bs_Count = 1;
 
-    readonly string[] message_s3U = {"お、誰かと思えば嬢ちゃんじゃねえか。", "今日は気分を変えて外で刀の手入れをな。\n嬢ちゃんの方こそ、何か用でもあんのか？", "おまえさんは聖剣でも何でも作れんだろ……。\nまあちょうど良いのがあるにはある。買ってくかい？", "生憎こちとら商人なんでね。良いもん持ってるなら買い取りもするし、今すぐ金(QP)が要るってんなら質に入れるのもいいが、どうすんだ？", "どれが欲しいんだ？", "どれを引き取りゃいい？" ,"まいどあり！", "まだ見ていくか？", "じゃあ、またな！"};
+    readonly string[] message_s3U = {"お、誰かと思えば嬢ちゃんじゃねえか。", "今日は気分を変えて外で刀の手入れをな。\n嬢ちゃんの方こそ、何か用でもあんのか？", "おまえさんは聖剣でも何でも作れんだろ……。\nまあちょうど良いのがあるにはある。買ってくかい？", "生憎こちとら商人なんでね。良いもん持ってるなら買い取り、それか一時的な引き取りってのもいいが、どうすんだ？", "どれが欲しいんだ？", "どれを引き取りゃいい？" ,"まいどあり！", "まだ見ていくか？", "じゃあ、またな！"};
     readonly string[] message_s3D = {"あ、村正！何やってるの？", "今はモルガンを探してて……。あ、そうだ！村正、何か良い刀ない？", "え、金(QP)とるの！？こっちは万年金欠なんだぞ村正ァ！", "うーん、それじゃあ……",  "(矢印キーとEnterで選択)", "(マウスで選択し、クリックまたはEnterで決定)\n(Bを押すと一つ前の選択に戻る)", "ここまでにしておくよ。" };
 
     // Start is called before the first frame update
@@ -382,9 +386,12 @@ public class Message3_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        Coroutine coroutine = StartCoroutine(m_Manager.FaceChange(face_P, AC1, AC2));
         message_D.text = message_s3D[1];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        StopCoroutine(coroutine);
+        face_P.sprite = AC2;
         face.sprite = MS2;
         black_U.SetActive(false);
         black_D.SetActive(true);
@@ -393,6 +400,7 @@ public class Message3_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC3;
         message_D.text = message_s3D[2];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -404,6 +412,7 @@ public class Message3_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC1;
         message_D.text = message_s3D[3];
         yield return new WaitForSeconds(1);
         face.sprite = MS1;
@@ -436,17 +445,24 @@ public class Message3_Manager : MonoBehaviour
             case 41:
                 for(int i = 0; i < bs_Count; i++) having.Item_Adder(item_namakura);
                 having.QP_Changer(-3000 * bs_Count);
+                Manager.SumOfBoughtSwordPrice += 3000 * bs_Count;
                 break;
             case -2:
                 for (int i = 0; i < bs_Count; i++) having.Item_Adder(item_meto);
                 having.QP_Changer(-5000 * bs_Count);
+                Manager.SumOfBoughtSwordPrice += 5000 * bs_Count;
                 break;
             case -45:
                 for (int i = 0; i < bs_Count; i++) having.Item_Adder(item_yoto);
                 status.hp -= 100 * bs_Count;
                 status.Status_Changer();
-                if (Status.HP <= 0) StartCoroutine(ms_Manager.GameOver());
+                if (Status.HP <= 0)
+                {
+                    StartCoroutine(ms_Manager.GameOver());
+                    yield return new WaitForSeconds(5);
+                }
                 having.QP_Changer(-10000 * bs_Count);
+                Manager.SumOfBoughtSwordPrice += 10000 * bs_Count;
                 break;
         }
         yield return new WaitForSeconds(1);

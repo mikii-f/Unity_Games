@@ -21,6 +21,9 @@ public class Message5_Manager : MonoBehaviour
     public Sprite M1;
     public Sprite M2;
     public Sprite M3;
+    public Image face_P;
+    public Sprite AC1;
+    public Sprite AC4;
     public TMP_Text characterName;
     public GameObject window_O;
     public GameObject tri_R;
@@ -32,7 +35,7 @@ public class Message5_Manager : MonoBehaviour
     public Items item_flower;
     public Items item_trash;
 
-    readonly string[] message_s5U = {"おや、キャスターの君。\nこんなところで出会うとは奇遇だね。", "なんだい、出会い頭に怪訝な顔をするなんて。\nモルガンを探しているんだろう？私が手助けしてあげようじゃないか。", "おや、信用してもらえていないようだね。\nそれはアレだよ、今のモルガンはかなり大人しいとはいえ、やりすぎたならこらしめないといけない。", "それをできるだけ自分の手を汚さずにやれるなら逃す手はないだろう？\n君の眼なら嘘じゃないと分かるはずだ。", "はは、こう見えて私は忙しい身でね。\nそれじゃあこれを受け取っていくといい。", "「 マーリンの花 」を手に入れた\n(体力・最大体力+200 攻撃・防御+20 新しいエリアに入るごとに体力50回復)", "「 プリンの空きカップ？ 」を手に入れた", "それは残念だ。\nまあ、引き続き頑張るといい。"};
+    readonly string[] message_s5U = {"おや、キャスターの君。\nこんなところで出会うとは奇遇だね。", "なんだい、出会い頭に怪訝な顔をするなんて。\nモルガンを探しているんだろう？私が手助けしてあげようじゃないか。", "おや、信用してもらえていないようだね。\nそれはアレだよ、今のモルガンはかなり大人しいとはいえ、やりすぎたならこらしめないといけない。", "それをできるだけ自分の手を汚さずにやれるなら逃す手はないだろう？\n君の眼なら嘘じゃないと分かるはずだ。", "はは、こう見えて私は忙しい身でね。\nそれじゃあこれを受け取っていくといい。", "「 マーリンの花 」を手に入れた\n(最大体力+200 攻撃+10 防御+20 新しいエリアに入るごとに体力50回復)", "「 プリンの空きカップ？ 」を手に入れた", "それは残念だ。\nまあ、引き続き頑張るといい。"};
     readonly string[] message_s5D = {"げ、マーリン……。", "(なんか怪しい気がするんだよなあ……。)\nうーん、マーリンはどうして手助けしてくれるんですか？", "(確かに嘘は言っていないみたいだけど……。\nマーリンのお助けアイテム、どうするべきかな？)", "モルガンは強敵だし、もらっておきます。\nそれはそれとして、他人に押しつけるのは良くないと思います。", "あれ、これは……？", "なんだか押しつけられてるみたいで嫌なので、自力で頑張ります。"};
 
     // Start is called before the first frame update
@@ -120,9 +123,12 @@ public class Message5_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        Coroutine coroutine = StartCoroutine(m_Manager.FaceChange(face_P, AC4, AC1));
         message_D.text = message_s5D[1];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        StopCoroutine(coroutine);
+        face_P.sprite = AC1;
         black_U.SetActive(false);
         black_D.SetActive(true);
         message_U.text = message_s5U[2];
@@ -134,6 +140,7 @@ public class Message5_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC1;
         message_D.text = message_s5D[2];
         yield return new WaitForSeconds(2);
         black_D.SetActive(true);

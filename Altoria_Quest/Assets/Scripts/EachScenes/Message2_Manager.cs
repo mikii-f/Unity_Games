@@ -21,6 +21,9 @@ public class Message2_Manager : MonoBehaviour
     public Sprite BS1;
     public Sprite BS2;
     public Sprite BS3;
+    public Image face_P;
+    public Sprite AC1;
+    public Sprite AC2;
     public TMP_Text characterName;
     public GameObject window_O;
     public GameObject tri_H;
@@ -32,7 +35,7 @@ public class Message2_Manager : MonoBehaviour
     public Items item_heel;
     public Items item_boots;
 
-    readonly string[] message_s2U = { "ん？誰かと思えば田舎妖精じゃねえか。\n運が良いなおまえ。", "靴の新作が完成したんだよ。それで、試し履きさせるヤツを探してたらおまえが来たってワケ。", "ちょうどサイズは合ってるはずだし、特別に試させてやる。", "たまにだと！？……いやいい、今は気分が良いからな。\nヒール(攻撃力)とブーツ(防御力)、どっちにするんだ？", "ヒール……せいぜい似合うよう努力しな。\n念のため言っとくが絶対壊すなよ。あとでレビューも聞くからな。", "「 バーヴァン・シーのヒール 」を手に入れた(やる気+5 攻撃+50)", "ブーツか。ま、おまえらしいな。\nあとでレビュー聞かせろよな。", "「 バーヴァン・シーのブーツ 」を手に入れた(やる気+5 防御+50)"};
+    readonly string[] message_s2U = { "ん？誰かと思えば田舎妖精じゃねえか。\n運が良いなおまえ。", "靴の新作が完成したんだよ。それで、試し履きさせるヤツを探してたらおまえが来たってワケ。", "ちょうどサイズは合ってるはずだし、特別に試させてやる。", "たまにだと！？……いやいい、今は気分が良いからな。\nヒール(攻撃力)とブーツ(防御力)、どっちにするんだ？", "ヒール……せいぜい似合うよう努力しな。\n念のため言っとくが絶対壊すなよ。あとでレビューも聞くからな。", "「 バーヴァン・シーのヒール 」を手に入れた(やる気+5 攻撃+30)", "ブーツか。ま、おまえらしいな。\nあとでレビュー聞かせろよな。", "「 バーヴァン・シーのブーツ 」を手に入れた(やる気+5 防御+30)"};
     readonly string[] message_s2D = { "あれ、バーヴァン・シー？なんでこんなところに……。\nそれと、運が良いって？", "え、やったあ！バーヴァン・シーもたまには良いことするじゃん！", "それなら……", "こっちかな。" };
 
     // Start is called before the first frame update
@@ -71,7 +74,11 @@ public class Message2_Manager : MonoBehaviour
 
         if (window_O.activeSelf) Select_Time();
 
-        if (!ms_Manager.eye_used && ms_Manager.eye_possible && Input.GetKeyDown(KeyCode.Y)) StartCoroutine(Real_Voice());
+        if (!ms_Manager.eye_used && ms_Manager.eye_possible && Input.GetKeyDown(KeyCode.Y))
+        {
+            Manager.BaobhanSithWatched = 1;
+            StartCoroutine(Real_Voice());
+        }
     }
 
     void Select_Time()
@@ -120,6 +127,7 @@ public class Message2_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC2; 
         message_D.text = message_s2D[1];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -132,6 +140,7 @@ public class Message2_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC1;
         message_D.text = message_s2D[2];
         yield return new WaitForSeconds(1);
         face.sprite = BS1;

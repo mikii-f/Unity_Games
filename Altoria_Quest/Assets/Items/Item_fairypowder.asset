@@ -17,5 +17,5 @@ MonoBehaviour:
   p_mHP: 0
   p_Motivation: 0
   p_Attack: 0
-  p_Deffense: 30
-  price_S: 2000
+  p_Deffense: 20
+  price_S: 1500

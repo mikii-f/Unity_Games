@@ -3833,7 +3833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1000
   mhp: 1000
-  motivation: 20
+  motivation: 10
   attack: 200
   defense: 50
 --- !u!4 &1608214320

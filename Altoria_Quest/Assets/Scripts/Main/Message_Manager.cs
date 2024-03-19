@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Message_Manager : MonoBehaviour
 {
@@ -54,5 +55,12 @@ public class Message_Manager : MonoBehaviour
         gu_Manager.SandIText_Changer();
         yield return new WaitForSeconds(2);
         go_Area.SetActive(false);
+    }
+
+    public IEnumerator FaceChange(Image face, Sprite face1, Sprite face2)
+    {
+        face.sprite = face1;
+        yield return new WaitForSeconds(1.5f);
+        face.sprite = face2;
     }
 }

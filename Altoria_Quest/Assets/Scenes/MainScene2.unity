@@ -267,6 +267,9 @@ MonoBehaviour:
   BS1: {fileID: 21300000, guid: e0f330d4bfe09bb45a3491bff764ba2b, type: 3}
   BS2: {fileID: 21300000, guid: ac3d4e54c2d953f4f8f8fa857d9cc7f6, type: 3}
   BS3: {fileID: 21300000, guid: 8a3c54f7aae8f6d43a09e4374e489faf, type: 3}
+  face_P: {fileID: 1953401785}
+  AC1: {fileID: 21300000, guid: f1091a550c49185449315dde324e3079, type: 3}
+  AC2: {fileID: 21300000, guid: d613d5baa5f3b444aa1070adcd48f49d, type: 3}
   characterName: {fileID: 772909592}
   window_O: {fileID: 1155299792}
   tri_H: {fileID: 1150431252}

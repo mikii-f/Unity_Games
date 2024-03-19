@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u7ADC\u306E\u7259"
   count: 1
-  p_HP: 0
+  p_mHP: 0
   p_Motivation: 0
-  p_Attack: 20
+  p_Attack: 10
   p_Deffense: 0
-  price_S: 1000
+  price_S: 500

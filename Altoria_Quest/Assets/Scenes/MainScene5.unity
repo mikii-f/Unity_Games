@@ -5112,9 +5112,12 @@ MonoBehaviour:
   black_D: {fileID: 202301}
   face: {fileID: 804347783}
   flame: {fileID: 21300000, guid: 91b94958bad68c6428d52ebf229d892b, type: 3}
-  M1: {fileID: 21300000, guid: 5c27e4c5965f71c44a45e6391832ca6f, type: 3}
-  M2: {fileID: 21300000, guid: bd2fbea856fdd5a4682f4db889881950, type: 3}
-  M3: {fileID: 21300000, guid: bd74f59f47219b24a91ed100ad3b207d, type: 3}
+  M1: {fileID: 21300000, guid: ceb6505700ddeb14a85a7733500ab183, type: 3}
+  M2: {fileID: 21300000, guid: 0d342e10c7be4cb439399c709c0c165a, type: 3}
+  M3: {fileID: 21300000, guid: c6f07c36c5b338840af690da7fbe2d4b, type: 3}
+  face_P: {fileID: 1318759872}
+  AC1: {fileID: 21300000, guid: f1091a550c49185449315dde324e3079, type: 3}
+  AC4: {fileID: 21300000, guid: af74217bd4b406143a2bb1f3efb9ef28, type: 3}
   characterName: {fileID: 386495897}
   window_O: {fileID: 1191057897}
   tri_R: {fileID: 517076186}

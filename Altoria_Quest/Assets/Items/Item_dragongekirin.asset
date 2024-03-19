@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: "\u7ADC\u306E\u9006\u9C57"
   count: 1
   p_mHP: 0
-  p_Motivation: 5
-  p_Attack: 50
+  p_Motivation: 0
+  p_Attack: 30
   p_Deffense: 0
-  price_S: 2500
+  price_S: 1000

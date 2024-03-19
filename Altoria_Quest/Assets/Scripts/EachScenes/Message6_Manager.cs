@@ -24,6 +24,10 @@ public class Message6_Manager : MonoBehaviour
     public Sprite C1;
     public Sprite C2;
     public Sprite C3;
+    public Image face_P;
+    public Sprite AC1;
+    public Sprite AC2;
+    public Sprite AC3;
     public TMP_Text characterName;
     int end = 0;
 
@@ -31,7 +35,7 @@ public class Message6_Manager : MonoBehaviour
     Status status;
     public Items item_violin;
 
-    readonly string[] message_s6U = {"あら、アルトリアじゃない。\nここにいるってことは……私たち、目的は同じかしら？", "それも良いけど……ここは勝負にしましょう！\n先にモルガンを倒した方がマスターを独占できるってことで良いわよね？", "決まりね。ならあっち向いてほいで勝った方が先に出発するわよ！", "くっ……負けは負けね。\n先に進みなさい。", "ぜっったい追い越してやるけど、もし先にたどり着いたらこれを使うといいわ。", "「 ノクナレアのバイオリン 」を手に入れた(やる気+10 攻撃+100)", "よし！私の勝ちね！", "それじゃあ先に行かせてもらうわ。\n追いつけるよう頑張りなさい？", "やる気が5下がった。"};
+    readonly string[] message_s6U = {"あら、アルトリアじゃない。\nここにいるってことは……私たち、目的は同じかしら？", "それも良いけど……ここは勝負にしましょう！\n先にモルガンを倒した方がマスターを独占できるってことで良いわよね？", "決まりね。ならあっち向いてほいで勝った方が先に出発、負けた方はしばらく待機よ！", "くっ……負けは負けね。\n先に進みなさい。", "ぜっったい追い越してやるけど、もし先にたどり着いたらこれを使うといいわ。", "「 ノクナレアのバイオリン 」を手に入れた(やる気+10 攻撃+50)", "よし！私の勝ちね！", "それじゃあ先に行かせてもらうわ。\n追いつけるよう頑張りなさい？", "やる気が5下がった。体力が200減った。"};
     readonly string[] message_s6D = {"あ、ノクナレアじゃん！", "モルガンを探してるんだよね。\nせっかくだし、一緒に行こっか？", "……！\nど、独占とかはよく分からないけど、勝負なら負けてられないよね！", "え…………？", "やったぁ！わたしの勝ち！", "ちっくしょう……。"};
 
     // Start is called before the first frame update
@@ -71,6 +75,7 @@ public class Message6_Manager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         face.sprite = C1;
         characterName.text = "ノクナレア";
+        face_P.sprite = AC2;
         message_D.text = message_s6D[0];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -81,6 +86,7 @@ public class Message6_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC1;
         message_D.text = message_s6D[1];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -92,6 +98,7 @@ public class Message6_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC3;
         message_D.text = message_s6D[2];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -102,6 +109,7 @@ public class Message6_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC1;
         message_D.text = message_s6D[3];
         yield return new WaitForSeconds(2);
         window_B.SetActive(true);
@@ -156,6 +164,7 @@ public class Message6_Manager : MonoBehaviour
     IEnumerator Scene6_W()
     {
         black_U.SetActive(true);
+        face_P.sprite = AC2;
         message_D.text = message_s6D[4];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -169,6 +178,7 @@ public class Message6_Manager : MonoBehaviour
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         face.sprite = flame;
+        face_P.sprite = AC1;
         characterName.text = "";
         message_U.text = message_s6U[5];
         yield return null;
@@ -191,6 +201,7 @@ public class Message6_Manager : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_U.SetActive(true);
         black_D.SetActive(false);
+        face_P.sprite = AC3;
         message_D.text = message_s6D[5];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -200,12 +211,14 @@ public class Message6_Manager : MonoBehaviour
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         face.sprite = flame;
+        face_P.sprite = AC1;
         characterName.text = "";
         message_U.text = message_s6U[8];
         yield return null;
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         black_D.SetActive(false);
         status.motivation -= 5;
+        status.hp -= 200;
         status.Status_Changer();
         gu_Manager.SandIText_Changer();
         window_U.SetActive(false);

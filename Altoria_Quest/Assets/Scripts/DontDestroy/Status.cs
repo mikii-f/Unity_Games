@@ -84,8 +84,10 @@ public class Status : MonoBehaviour
 
     public void Status_Changer()
     {
-        HP = hp + Status_Ps(0);
+        int temp = mHP;
         mHP = mhp + Status_Ps(0);
+        if (temp > mHP) hp += temp - mHP;
+        HP = hp + Status_Ps(0);
         Motivation = motivation + Status_Ps(1);
         Attack = attack + Status_Ps(2);
         Defense = defense + Status_Ps(3);
@@ -103,7 +105,7 @@ public class Status : MonoBehaviour
     {
         hp = 1000;
         mhp = 1000;
-        motivation = 20;
+        motivation = 10;
         attack = 200;
         defense = 50;
     }

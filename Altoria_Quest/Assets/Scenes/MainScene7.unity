@@ -3241,9 +3241,13 @@ MonoBehaviour:
   tp: {fileID: 21300000, guid: 048a5db1f23a89a418c236f4bc06379c, type: 3}
   smoke: {fileID: 21300000, guid: 46be3a78ff225de44b6fb736867492a6, type: 3}
   Oberon: {fileID: 21300000, guid: cd1cfd46d89200a44b22b84a978f0e4d, type: 3}
-  O1: {fileID: 21300000, guid: ef0ebd2020679c4418bb31a1805f503d, type: 3}
-  O2: {fileID: 21300000, guid: c325ec40a856827469c31ca1214de7ef, type: 3}
-  O3: {fileID: 21300000, guid: 37cf9f80f52b6ad4c9af6e43186a36b0, type: 3}
+  O1: {fileID: 21300000, guid: 14a1570d06e91b349bc8a30b85fe3fc4, type: 3}
+  O2: {fileID: 21300000, guid: 8a03d9bf8d8c8444cabe6d8718babd51, type: 3}
+  O3: {fileID: 21300000, guid: 49030cc9725aee84892c1fa646b846bc, type: 3}
+  face_P: {fileID: 2015023561}
+  AC1: {fileID: 21300000, guid: f1091a550c49185449315dde324e3079, type: 3}
+  AC3: {fileID: 21300000, guid: 4832ef61ca8b2214dbe4cd3fcc5138d5, type: 3}
+  AC4: {fileID: 21300000, guid: af74217bd4b406143a2bb1f3efb9ef28, type: 3}
   characterName: {fileID: 824674141}
   item_fp: {fileID: 11400000, guid: ab21ba4e2b068674e89d8e25627407d5, type: 2}
   item_mant: {fileID: 11400000, guid: d482406dd0040444a89b7a859d411207, type: 2}

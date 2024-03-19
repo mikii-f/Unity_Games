@@ -37,6 +37,14 @@ public class Guide_Manager : MonoBehaviour
             status.hp += 50 * Mathf.Min(Having.items[n].count, m);
             Having.items[n].count -= Mathf.Min(Having.items[n].count, m);
         }
+        else if (Having.items.FindIndex(x => x.Name == "‚¨‚É‚¬‚è") >= 0 && Status.mHP - Status.HP > 0 && Manager.current_Scene == 9)
+        {
+            int n = Having.items.FindIndex(x => x.Name == "‚¨‚É‚¬‚è");
+            GameObject s_Manager = GameObject.Find("Status_Manager");
+            Status status = s_Manager.GetComponent<Status>();
+            status.hp += 50;
+            Having.items[n].count -= 1;
+        }
     }
 
     // Update is called once per frame

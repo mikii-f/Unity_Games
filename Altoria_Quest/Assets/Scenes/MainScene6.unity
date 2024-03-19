@@ -2091,9 +2091,13 @@ MonoBehaviour:
   black_D: {fileID: 393951211}
   face: {fileID: 938308601}
   flame: {fileID: 21300000, guid: 91b94958bad68c6428d52ebf229d892b, type: 3}
-  C1: {fileID: 21300000, guid: 91eeb6df399c85c48b31d8ec8bd53915, type: 3}
-  C2: {fileID: 21300000, guid: 50575f8dd177eb2408d02def9a9c308f, type: 3}
-  C3: {fileID: 21300000, guid: eae7688c9cd385d42ba25458160259f4, type: 3}
+  C1: {fileID: 21300000, guid: 62742c5eae0b19f46b1c0b1b9a370e84, type: 3}
+  C2: {fileID: 21300000, guid: 3af3b0b0c22f2574897c4dffb042f1fc, type: 3}
+  C3: {fileID: 21300000, guid: 71c4740adf49af64f9dcceaa497f586d, type: 3}
+  face_P: {fileID: 1617514698}
+  AC1: {fileID: 21300000, guid: f1091a550c49185449315dde324e3079, type: 3}
+  AC2: {fileID: 21300000, guid: d613d5baa5f3b444aa1070adcd48f49d, type: 3}
+  AC3: {fileID: 21300000, guid: 4832ef61ca8b2214dbe4cd3fcc5138d5, type: 3}
   characterName: {fileID: 497584854}
   item_violin: {fileID: 11400000, guid: 9b407f17d141ae94aaf40d7b19f01edb, type: 2}
 --- !u!1 &587300198

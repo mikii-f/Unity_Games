@@ -139,7 +139,7 @@ public class Message8_Manager : MonoBehaviour
         switch (tri_position.anchoredPosition.y)
         {
             case 41:
-                if (Having.items[0].count < 2000)
+                if (Having.items[0].count < 1000)
                 {
                     if (!window_S.activeSelf) StartCoroutine(CannotBuy());
                     return;
@@ -147,12 +147,12 @@ public class Message8_Manager : MonoBehaviour
                 else
                 {
                     t_bsItem.text = "和食セット";
-                    NPText_Setter(2000, bs_Count);
+                    NPText_Setter(1000, bs_Count);
                     StartCoroutine(IntervalnS());
                     break;
                 }
             case -2:
-                if (Having.items[0].count < 2000)
+                if (Having.items[0].count < 1000)
                 {
                     if (!window_S.activeSelf) StartCoroutine(CannotBuy());
                     return;
@@ -160,12 +160,12 @@ public class Message8_Manager : MonoBehaviour
                 else
                 {
                     t_bsItem.text = "洋食セット";
-                    NPText_Setter(2000, bs_Count);
+                    NPText_Setter(1000, bs_Count);
                     StartCoroutine(IntervalnS());
                     break;
                 }
             case -45:
-                if (Having.items[0].count < 500)
+                if (Having.items[0].count < 250)
                 {
                     if (!window_S.activeSelf) StartCoroutine(CannotBuy());
                     return;
@@ -173,7 +173,7 @@ public class Message8_Manager : MonoBehaviour
                 else
                 {
                     t_bsItem.text = item_onigiri.Name;
-                    NPText_Setter(500, bs_Count);
+                    NPText_Setter(250, bs_Count);
                     StartCoroutine(IntervalnS());
                     break;
                 }
@@ -189,24 +189,24 @@ public class Message8_Manager : MonoBehaviour
             switch (tri_position.anchoredPosition.y)
             {
                 case 41:
-                    if (Having.items[0].count >= 2000 * (bs_Count + 1))
+                    if (Having.items[0].count >= 1000 * (bs_Count + 1))
                     {
                         bs_Count++;
-                        NPText_Setter(2000, bs_Count);
+                        NPText_Setter(1000, bs_Count);
                     }
                     break;
                 case -2:
-                    if (Having.items[0].count >= 2000 * (bs_Count + 1))
+                    if (Having.items[0].count >= 1000 * (bs_Count + 1))
                     {
                         bs_Count++;
-                        NPText_Setter(2000, bs_Count);
+                        NPText_Setter(1000, bs_Count);
                     }
                     break;
                 case -45:
                     if (Having.items[0].count >= 500 * (bs_Count + 1))
                     {
                         bs_Count++;
-                        NPText_Setter(500, bs_Count);
+                        NPText_Setter(250, bs_Count);
                     }
                     break;
             }
@@ -219,21 +219,21 @@ public class Message8_Manager : MonoBehaviour
                     if (bs_Count > 1)
                     {
                         bs_Count--;
-                        NPText_Setter(2000, bs_Count);
+                        NPText_Setter(1000, bs_Count);
                     }
                     break;
                 case -2:
                     if (bs_Count > 1)
                     {
                         bs_Count--;
-                        NPText_Setter(2000, bs_Count);
+                        NPText_Setter(1000, bs_Count);
                     }
                     break;
                 case -45:
                     if (bs_Count > 1)
                     {
                         bs_Count--;
-                        NPText_Setter(500, bs_Count);
+                        NPText_Setter(250, bs_Count);
                     }
                     break;
             }
@@ -284,19 +284,19 @@ public class Message8_Manager : MonoBehaviour
             case 41:
                 message_D.text = "もぐもぐ……";
                 status.hp += 200 * bs_Count;
-                status.defense += 5 * bs_Count;
-                having.QP_Changer(-2000 * bs_Count);
+                status.defense += 2 * bs_Count;
+                having.QP_Changer(-1000 * bs_Count);
                 break;
             case -2:
                 message_D.text = "もぐもぐ……";
                 status.hp += 200 * bs_Count;
-                status.defense += 5 * bs_Count;
-                having.QP_Changer(-2000 * bs_Count);
+                status.defense += 2 * bs_Count;
+                having.QP_Changer(-1000 * bs_Count);
                 break;
             case -45:
                 message_D.text = "備蓄、大事だよね！";
                 for (int i = 0; i < bs_Count; i++) having.Item_Adder(item_onigiri);
-                having.QP_Changer(-500 * bs_Count);
+                having.QP_Changer(-250 * bs_Count);
                 break;
         }
         yield return new WaitForSeconds(1);

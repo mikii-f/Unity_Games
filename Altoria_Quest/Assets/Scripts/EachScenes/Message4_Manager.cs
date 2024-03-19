@@ -34,7 +34,7 @@ public class Message4_Manager : MonoBehaviour
     public Items item_df;
     public Items item_dg;
 
-    readonly string[] message_s4U = {"ワイバーンを倒すとランダムで素材が獲得できます。\nクラス相性が良ければ無傷で済みますが、悪ければ防御力に応じてダメージを受けます。", "クラスはアサシンだった！", "クラスはライダーだった！"};
+    readonly string[] message_s4U = {"ワイバーンを倒すとランダムで素材が獲得できます。\nクラス相性、及び防御力に応じてダメージを受けます。", "クラスはアサシンだった！", "クラスはライダーだった！"};
     readonly string[] message_s4D = {"あ、ワイバーンだ！", "やった、楽勝！", "やっべ。", "やめておこう。"};
 
     // Start is called before the first frame update
@@ -150,14 +150,11 @@ public class Message4_Manager : MonoBehaviour
         int item = UnityEngine.Random.Range(0, 2);
         int n = UnityEngine.Random.Range(1, 3);
         string text = "";
-        int damage = 0;
-        if (item == 0) text = "獲得素材：" + "竜の牙 " + n.ToString() + " 個";
-        else text = "獲得素材：" + "竜の逆鱗 " + n.ToString() + " 個";
-        if (e == 1)
-        {
-            damage = 600 - Status.Defense;
-            text += "\n体力が " + damage.ToString() + " 減った";
-        }
+        int damage;
+        if (item == 0) text = "獲得素材：" + "竜の牙(攻撃+10) " + n.ToString() + " 個";
+        else text = "獲得素材：" + "竜の逆鱗(攻撃+30) " + n.ToString() + " 個";
+        damage = Mathf.Max((1 + 3 * e) * 200 - Status.Defense, 0);
+        text += "\n体力が " + damage.ToString() + " 減った";
         yield return new WaitForSeconds(1);
         yield return StartCoroutine(ms_Manager.FadeIn());
         yield return new WaitForSeconds(0.5f);
@@ -172,9 +169,13 @@ public class Message4_Manager : MonoBehaviour
             if (item == 0) having.Item_Adder(item_df);
             else having.Item_Adder(item_dg);
         }
-        if (e == 1) status.hp -= damage;
+        status.hp -= damage;
         status.Status_Changer();
-        if (Status.HP <= 0) StartCoroutine(ms_Manager.GameOver());
+        if (Status.HP <= 0)
+        {
+            StartCoroutine(ms_Manager.GameOver());
+            yield return new WaitForSeconds(5);
+        }
         gu_Manager.SandIText_Changer();
         window_U.SetActive(false);
         window_D.SetActive(false);
@@ -191,6 +192,7 @@ public class Message4_Manager : MonoBehaviour
         black_U.SetActive(false);
         window_U.SetActive(false);
         window_D.SetActive(false);
+        icon.sprite = tp;
         m_Manager.is_Window = false;
     }
 }

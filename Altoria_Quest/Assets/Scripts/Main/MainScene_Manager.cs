@@ -135,6 +135,7 @@ public class MainScene_Manager : MonoBehaviour
         yield return new WaitForSeconds(2);
         status.Reset_S();
         having.Reset_I();
+        manager.Reset_M();
         SceneManager.LoadScene("Title");
     }
 }

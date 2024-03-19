@@ -24,7 +24,7 @@ public class Message1_Manager : MonoBehaviour
     readonly string[] message_s0U = { "悪の女王モルガンにマスターが奪われた！？\nアルトリア・キャスターを操作して取り返しに行こう！" };
     readonly string[] message_s0D = { "よーし、頑張るぞー！" };
 
-    readonly string[] message_s1U = { "「 竜の牙 」を見つけた(攻撃+20)" };
+    readonly string[] message_s1U = { "「 竜の牙 」を見つけた(攻撃+10)" };
     readonly string[] message_s1D = { "やったね！\nこの調子で進んでいこう！" };
 
     // Start is called before the first frame update
