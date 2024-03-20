@@ -1,8 +1,6 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class Message8_Manager : MonoBehaviour
